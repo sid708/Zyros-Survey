@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survey Results — Elder Care & Robotic Assistance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2A2A28;
+    --paper:#FBF9F5;
+    --panel:#FFFFFF;
+    --teal:#2B4C4F;
+    --teal-dark:#1D3436;
+    --gold:#C08A34;
+    --line:#DED7C8;
+    --muted:#6B685F;
+    --good:#3C6E52;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:'Atkinson Hyperlegible', sans-serif;font-size:18px;line-height:1.6;
+  }
+  header{
+    background:var(--teal);color:var(--paper);padding:48px 24px 40px;
+    border-bottom:3px solid var(--gold);
+  }
+  header .wrap{max-width:900px;margin:0 auto;}
+  header h1{
+    font-family:'Fraunces', serif;font-weight:600;
+    font-size:clamp(26px,3.6vw,36px);margin:0 0 10px;line-height:1.2;
+  }
+  header p{margin:0;color:#DDE6E4;font-size:17px;max-width:64ch;}
+  header .meta{margin-top:18px;display:flex;gap:24px;flex-wrap:wrap;font-size:15px;color:#C9DAD7;}
+  header .meta b{color:#fff;font-size:17px;}
+
+  main{max-width:900px;margin:0 auto;padding:36px 24px 80px;}
+
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;margin-bottom:32px;}
+  .stat-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:6px;
+    padding:22px 20px;box-shadow:0 1px 3px rgba(42,42,40,.05);
+  }
+  .stat-card .num{
+    font-family:'Fraunces',serif;font-weight:600;font-size:34px;color:var(--teal-dark);
+    line-height:1;margin-bottom:8px;
+  }
+  .stat-card .num span{color:var(--gold);}
+  .stat-card .label{font-size:14.5px;color:var(--muted);line-height:1.4;}
+
+  .highlight{
+    background:var(--teal);color:var(--paper);border-radius:6px;
+    padding:28px 26px;margin-bottom:32px;display:flex;gap:20px;align-items:center;
+  }
+  .highlight .big{font-family:'Fraunces',serif;font-weight:600;font-size:40px;color:var(--gold);flex:none;line-height:1;}
+  .highlight p{margin:0;font-size:17px;color:#EAF0EE;}
+  .highlight p b{color:#fff;}
+
+  section.block{
+    background:var(--panel);border:1px solid var(--line);border-radius:6px;
+    padding:28px 26px;margin-bottom:26px;box-shadow:0 1px 3px rgba(42,42,40,.05);
+  }
+  section.block h2{
+    font-family:'Fraunces', serif;font-weight:600;font-size:21px;color:var(--teal-dark);
+    margin:0 0 4px;
+  }
+  section.block .sub{color:var(--muted);font-size:15px;margin:0 0 22px;}
+
+  .bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+  .bar-row:last-child{margin-bottom:0;}
+  .bar-label{flex:0 0 220px;font-size:15.5px;}
+  .bar-track{flex:1;background:#F1EEE6;border-radius:4px;height:22px;position:relative;overflow:hidden;}
+  .bar-fill{height:100%;background:var(--teal);border-radius:4px;transition:width .6s ease;}
+  .bar-fill.gold{background:var(--gold);}
+  .bar-fill.muted{background:#B7ACA0;}
+  .bar-count{flex:0 0 60px;text-align:right;font-size:14.5px;color:var(--muted);font-weight:700;}
+
+  .scale-chart{display:flex;align-items:flex-end;gap:14px;height:160px;margin-bottom:6px;}
+  .scale-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+  .scale-col .col-num{font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:700;}
+  .scale-col .col-bar{width:100%;max-width:52px;background:var(--teal);border-radius:4px 4px 0 0;transition:height .6s ease;}
+  .scale-col.top .col-bar{background:var(--gold);}
+  .scale-col .col-tick{margin-top:8px;font-size:13px;color:var(--muted);}
+  .scale-labels-row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:2px;}
+
+  .quote-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  .quote{
+    border-left:3px solid var(--gold);padding:4px 0 4px 16px;font-size:16px;color:var(--ink);
+    font-style:italic;
+  }
+  .quote .attr{display:block;margin-top:6px;font-size:13.5px;color:var(--muted);font-style:normal;}
+
+  footer{
+    max-width:900px;margin:0 auto;padding:0 24px 48px;color:var(--muted);font-size:13px;
+    text-align:center;border-top:1px solid var(--line);padding-top:18px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Would a home care robot actually help you? — Results</h1>
+    <p>Responses on daily needs, trust in paid caregivers, and willingness to use a home care robot — mostly answered by adult children on behalf of an aging parent.</p>
+    <div class="meta">
+      <div><b>96</b> respondents</div>
+      <div><b>65%</b> answering for a parent</div>
+      <div><b>43</b> avg. respondent age</div>
+      <div><b>8–10 min</b> completion time</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <div class="highlight">
+    <div class="big">56%</div>
+    <p><b>54 of 96 respondents (56%)</b> said they'd be likely or very likely to use a home care robot instead of, or alongside, a hired caregiver — <b>if it cost meaningfully less than a full-time human caregiver and could be trusted more reliably than one.</b> Concerns about neglect, carelessness, or being taken advantage of by paid help came up more often than worries about physical safety itself.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">65<span>%</span></div>
+      <div class="label">Filling out this survey about a parent, not themselves (62 of 96)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">50<span>%</span></div>
+      <div class="label">Have had a negative experience or trust issue with a hired caregiver (48 of 96)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">61<span>%</span></div>
+      <div class="label">Would want the robot alongside a human, not replacing them (59 of 96)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">3.6<span>/5</span></div>
+      <div class="label">Average trust rating for a robot vs. a hired human caregiver</div>
+    </div>
+  </div>
+
+  <section class="block">
+    <h2>Who this response is about</h2>
+    <p class="sub">"Are you answering this survey for yourself, or on behalf of someone else?"</p>
+    <div class="bar-row">
+      <div class="bar-label">Myself</div>
+      <div class="bar-track"><div class="bar-fill" style="width:23%"></div></div>
+      <div class="bar-count">22</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">My parent(s)</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:65%"></div></div>
+      <div class="bar-count">62</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Another older family member</div>
+      <div class="bar-track"><div class="bar-fill" style="width:13%"></div></div>
+      <div class="bar-count">12</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>First reaction to the idea</h2>
+    <p class="sub">"What is your first honest reaction to a home care robot?"</p>
+    <div class="bar-row">
+      <div class="bar-label">Excited — I'd want this now</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:19%"></div></div>
+      <div class="bar-count">18</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Curious, but cautious</div>
+      <div class="bar-track"><div class="bar-fill" style="width:35%"></div></div>
+      <div class="bar-count">34</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Neutral / not sure</div>
+      <div class="bar-track"><div class="bar-fill" style="width:19%"></div></div>
+      <div class="bar-count">18</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Uneasy about it</div>
+      <div class="bar-track"><div class="bar-fill muted" style="width:15%"></div></div>
+      <div class="bar-count">14</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Against it</div>
+      <div class="bar-track"><div class="bar-fill muted" style="width:12%"></div></div>
+      <div class="bar-count">12</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Likelihood to use — if cheaper and more trustworthy than a hired caregiver</h2>
+    <p class="sub">"If it cost meaningfully less than a hired caregiver, and you could trust it not to neglect or take advantage of your parent the way you've worried a paid caregiver might — how likely would you be to use one?"</p>
+    <div class="scale-chart">
+      <div class="scale-col"><div class="col-num">6</div><div class="col-bar" style="height:20%"></div><div class="col-tick">1</div></div>
+      <div class="scale-col"><div class="col-num">12</div><div class="col-bar" style="height:40%"></div><div class="col-tick">2</div></div>
+      <div class="scale-col"><div class="col-num">24</div><div class="col-bar" style="height:80%"></div><div class="col-tick">3</div></div>
+      <div class="scale-col top"><div class="col-num">30</div><div class="col-bar" style="height:100%"></div><div class="col-tick">4</div></div>
+      <div class="scale-col"><div class="col-num">24</div><div class="col-bar" style="height:80%"></div><div class="col-tick">5</div></div>
+    </div>
+    <div class="scale-labels-row"><span>Definitely not</span><span>Definitely yes</span></div>
+  </section>
+
+  <section class="block">
+    <h2>How respondents would want to pay</h2>
+    <div class="bar-row">
+      <div class="bar-label">One-time purchase</div>
+      <div class="bar-track"><div class="bar-fill" style="width:34%"></div></div>
+      <div class="bar-count">33</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Monthly subscription</div>
+      <div class="bar-track"><div class="bar-fill" style="width:27%"></div></div>
+      <div class="bar-count">26</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Rent short-term as needed</div>
+      <div class="bar-track"><div class="bar-fill" style="width:23%"></div></div>
+      <div class="bar-count">22</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Would not pay for this</div>
+      <div class="bar-track"><div class="bar-fill muted" style="width:16%"></div></div>
+      <div class="bar-count">15</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Biggest worries</h2>
+    <p class="sub">Multiple selections allowed, so totals exceed 96.</p>
+    <div class="bar-row">
+      <div class="bar-label">Malfunctioning when needed most</div>
+      <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div>
+      <div class="bar-count">38</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Cost of buying/maintaining it</div>
+      <div class="bar-track"><div class="bar-fill" style="width:42%"></div></div>
+      <div class="bar-count">40</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Privacy — feeling watched</div>
+      <div class="bar-track"><div class="bar-fill" style="width:33%"></div></div>
+      <div class="bar-count">32</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Feeling cold or impersonal</div>
+      <div class="bar-track"><div class="bar-fill" style="width:27%"></div></div>
+      <div class="bar-count">26</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Family visiting less often</div>
+      <div class="bar-track"><div class="bar-fill" style="width:21%"></div></div>
+      <div class="bar-count">20</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Difficulty learning to use it</div>
+      <div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>
+      <div class="bar-count">14</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">None — no real worries</div>
+      <div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>
+      <div class="bar-count">14</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>In their own words</h2>
+    <div class="quote-grid">
+      <div class="quote">"im tired of interviewing new aides every few months, feels like a new one every time and i gotta explain everything again. a machine wont cut corners the second i step out the room, honestly id switch tomorow if price made sense."<span class="attr">— respondent, age 46, answering for her parent, 79</span></div>
+      <div class="quote">"after what happen with the last aide my parent dont really trust new ppl in the house no more. funny enough he says he would feel more calm with a robot then another stranger walking in."<span class="attr">— respondent, age 52, answering for his parent, 83</span></div>
+      <div class="quote">"falls not really our biggest fear tbh, its more knowing whoever or whatever is with them thru the day isnt cuttin corners or takeing advantage."<span class="attr">— respondent, age 58, answering for her parent</span></div>
+      <div class="quote">"i dont want to remove the human part completly, i just dont want it to be only 1 caregiver checking on my parent, need more eyes on the situation."<span class="attr">— respondent, age 41, answering for her parent, 76</span></div>
+      <div class="quote">"weve gone thru 3 different aides in 2 yrs and every time its a whole new set of nerves again, something that stays consistant even if its a machine sound like a real relief tbh."<span class="attr">— respondent, age 63, answering for her parent, 88</span></div>
+      <div class="quote">"for me its less about my parents and more myself down the road honestly. id rather a robot handle the basics then feel like im bein supervised all day by some other person."<span class="attr">— respondent, age 35, answering for himself</span></div>
+      <div class="quote">"my parent is proud and dont like needing help from ppl. shes more willing to accept a device then to admit a person gotta dress her or help her bath."<span class="attr">— respondent, age 50, answering for her parent, 81</span></div>
+      <div class="quote">"i looked into full time care and the cost was insane honestly. if a robot could cover even half of what a caregiver does that would change our whole financial pic, id sign up right away no doubt."<span class="attr">— respondent, age 44, answering for his parent, 77</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Illustrative sample results (n=96) generated for mockup and presentation purposes — not yet real collected responses.
+</footer>
+
+</body>
+</html>
